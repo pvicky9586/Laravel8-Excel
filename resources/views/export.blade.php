@@ -1,29 +1,34 @@
-<!DOCTYPE html>
+@extends('layouts.layout')
+@section('content')
 
-<html>
+<div class="card bg-light mt-3">
 
-<head>
+        <div class="card-header">
+                <h1>Indique la tabla que desee exportar   </h1>
+        </div>
 
-    <title>Laravel 8 Import Export Excel to database Example - ItSolutionStuff.com</title>
+        <div class="card-body">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-
-</head>
-
-<body>
-<div class="container">
-    <h1>
-        Seleccione la tabla que sedea importar
-    </h1>
-    <ul>
+   
+    <ul class="display-6">
         <li>
-</li>
+            <a href="{{(route('exportUsers'))}}">Users</a>
+        </li>
+        <li>
+                <a href="{{(route('exportProducts'))}}">Products</a>
+        </li>
 </ul>
+
+    <div class="container">
+            <div class="row">
+              <div class="col text-center">
+                    <a  href="{{ url('/') }}"> <button class="btn btn-danger bt-lg">
+                            Volver </button> </a>
+              </div>
+            </div>
+          </div>
 </div>
 
 
 
-
-</body>
-
-</html>
+@endsection

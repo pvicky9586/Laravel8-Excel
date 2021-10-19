@@ -25,5 +25,6 @@ Route::post('import', [MyController::class, 'import'])->name('import');
 
 
 Route::get('exportView', [MyController::class,'exportView']);
-Route::get('export', [MyController::class, 'export'])->name('export');
+Route::get('exportUsers', [MyController::class, 'exportUsers'])->name('exportUsers'); 
+Route::get('exportProducts', [MyController::class, 'exportProducts'])->name('exportProducts');
 
