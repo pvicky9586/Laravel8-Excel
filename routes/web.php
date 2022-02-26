@@ -20,11 +20,22 @@ Route::get('/', function () {
 });
 
 
-Route::get('importView', [MyController::class, 'importView']);
+Route::get('import', [MyController::class, 'importView']);
 Route::post('import', [MyController::class, 'import'])->name('import');
+
+
+
+
+
 
 
 Route::get('exportView', [MyController::class,'exportView']);
 Route::get('exportUsers', [MyController::class, 'exportUsers'])->name('exportUsers'); 
 Route::get('exportProducts', [MyController::class, 'exportProducts'])->name('exportProducts');
+Route::get('exportPersonal', [MyController::class, 'exportPersonal'])->name('exportPersonal');
 
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

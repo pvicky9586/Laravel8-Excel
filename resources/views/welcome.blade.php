@@ -8,7 +8,7 @@
             </div>
 
             <div  class="row justify-content-end" > 
-                <a href="{{ url('importView') }}" class="btn btn-success btn-lg ">Import/Update Data</a>
+                <a href="{{ url('import') }}" class="btn btn-success btn-lg ">Import/Update Data</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                 <a  href="{{ url('exportView') }}" class="btn btn-warning btn-lg">Export Data</a>   
             </div>

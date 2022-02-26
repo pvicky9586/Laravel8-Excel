@@ -73,6 +73,10 @@ return [
 
     'imports'            => [
 
+        'heading_row' => [
+            'formatter' => 'custom',
+        ],
+
         /*
         |--------------------------------------------------------------------------
         | Read Only
@@ -325,4 +329,8 @@ return [
         */
         'force_resync_remote' => null,
     ],
+
+
+
+
 ];
