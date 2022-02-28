@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Exports\UsersExport;
 use App\Exports\ProductExport;
+
 use App\Imports\UsersImport;
+use App\Imports\ProductImport;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Input;
@@ -15,6 +17,10 @@ use DB;
 class MyController extends Controller
 {
     
+    public function rules(){
+
+        
+    }
 
     public function importView()
     {
@@ -31,21 +37,39 @@ class MyController extends Controller
      
  public function import(Request $request) 
     {
-            $request->validate([ 'file' => 'required']);
-    
-            $path = $_FILES['file']['name'];
-            //echo $path.'</br>';
-            $name = pathinfo($path, PATHINFO_FILENAME);
-           // echo 'solo nombre: '.$name;
-            
-            DB::table('users')->truncate(); //vaciar tabla
+        if($request->selectTable == ''){
+            $request->validate([ 'selectTable'=>'required']); 
+        }
+        $request->validate([ 'file' => 'required']); 
+        $path = $_FILES['file']['name'];        
+        $name = pathinfo($path, PATHINFO_FILENAME);
+        //echo $request->selectTable;
+        //echo $path.'</br>';
+        // echo 'solo nombre: '.$name;
+
+        if ($request->selectTable ==1){
+              DB::table('users')->truncate(); //vaciar tabla
 
             // Excel::import(new UsersImport,request()->file('file'));
             // return back()->with('mensaje','Data imports exitosamente');
 
-           $import = new UsersImport();
+            $import = new UsersImport();
             Excel::import($import, request()->file('file'));
             return view('import', ['numRows'=>$import->getRowCount()]);
+            
+        }
+        if($request->selectTable == 2){
+              DB::table('products')->truncate(); //vaciar tabla
+
+            // Excel::import(new ProductImport,request()->file('file'));
+            // return back()->with('mensaje','Data imports exitosamente');
+
+            $import = new ProductImport();
+            Excel::import($import, request()->file('file'));
+            return view('import', ['numRows'=>$import->getRowCount()]);
+        }
+            
+      
     }
 
 

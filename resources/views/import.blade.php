@@ -8,26 +8,32 @@
             Laravel 8 Import Export Excel to database Example - 
             <small class="text-danger">php artisan migrate --> para insertar table BD.</small>
         </div>
-{{$tables}}
+
         <div class="card-body">
             <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <select>
-                    <option>Seccione tabla a insertar</option>
-                </select>
-                <input type="file" name="file" class="form-control">
+               <div>
+                    <select name="selectTable" style="margin-right: 10%">
+                        <option value="">---------Table Update----------</option>
+                        <option value="1">Usuarios</option>
+                        <option value="2">Productor</option>
+                    </select>
 
-    @error('file')
-        <span class="invalid-feedback" role="alert">
-            <strong>Nada por Actualizar</strong>
-        </span>
-    @enderror
+                    <input type="file" name="file" class="">
+                </div> 
 
+                @if ($errors->has('selectTable'))
+                    <div class="alert text-danger" role="alert">Selecciona la tabla</div>
+                @endif
+
+                @if($errors->has('file'))
+                    <div class="alert text-danger" role="alert">{{ $errors->first('file') }}
+                    </div>
+                @endif 
                 <br>
                 <button class="btn btn-success">Import/Update Data</button>    
-
-            </form>
+        </form>
         </div>
         
     
@@ -39,8 +45,7 @@
 
      @if(!empty($numRows))
       <h1>registros insertados {{$numRows}}</h1>
-    @endif
-     
+    @endif   
       
     </div>
 
